@@ -41,12 +41,14 @@ public class AlternativeView extends AbstractView implements Observer{
     public void onDraw() {
         System.out.println("AlternativeView (" + mName + "): " + new StringBuffer().append(mModel.getData()).reverse());
         
-        /*String s;
+        /*
+        String s;
         s = mModel.getData();
         StringBuffer sb = new StringBuffer();
         sb.append(s);
         sb.reverse();
-        System.out.println(sb);*/
+        System.out.println(sb);
+        */
         
     }
 }
