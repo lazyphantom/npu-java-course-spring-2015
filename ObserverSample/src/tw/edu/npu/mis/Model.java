@@ -30,10 +30,12 @@ package tw.edu.npu.mis;
  *
  * @author Samael Wang <freesamael@gmail.com>
  */
-public class Model {
+public class Model extends Subject{
 
     private String mData;
-
+    private String temp;
+    
+    
     /**
      * Get model content.
      *
@@ -49,7 +51,11 @@ public class Model {
      * @param data A {@link String} data.
      */
     public void setData(String data) {
-        mData = data;
+        temp = data;
+        if(!temp.equals(mData)) {
+            mData = data;
+            Notify();
+        }
     }
 
 }

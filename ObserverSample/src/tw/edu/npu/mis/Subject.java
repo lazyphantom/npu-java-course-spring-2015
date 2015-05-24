@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Samael Wang <freesamael@gmail.com>
+ * Copyright (c) 2015, jie
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,45 +26,25 @@
 package tw.edu.npu.mis;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Simulate Window objects in GUI toolkits.
  *
- * @author Samael Wang <freesamael@gmail.com>
+ * @author jie
  */
-public class Window {
-
-    private Controller mController;
-    private List<View> mInvalidViews;
-
-    /**
-     * Start the event loop.
-     *
-     * @param c The controller.
-     * @param views The views to draw on the first loop.
-     */
-    public void startEventLoop(Controller c, List<View> views) {
-        mController = c;
-        mInvalidViews = new ArrayList<>(views);
-
-        // Simulate how an event loop works.
-        while (true) {
-            mController.readInput();
-            for (View v : mInvalidViews) {
-                v.onDraw();
-            }
-            mInvalidViews.clear();
+public class Subject {
+    private ArrayList<Observer> ObsList = new ArrayList<Observer>();
+    public void Attach(Observer o) {
+        ObsList.add(o);
+    }
+    public void Detach(Observer o) {
+        ObsList.remove(o);
+    }
+    
+    public void Notify() {
+        for (Observer i : ObsList) {
+            i.Update();
         }
     }
-
-    /**
-     * Add a view to a queue for redraw on screen later.
-     *
-     * @param v View to redraw.
-     */
-    public void schduleRedraw(View v) {
-        if(!mInvalidViews.contains(v))
-        mInvalidViews.add(v);
-    }
+    
+    
 }
