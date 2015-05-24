@@ -35,7 +35,13 @@ public abstract class AbstractView implements Observer
     protected final String mName;
     protected final Window mWindow;
     protected final Model mModel;
-
+    
+    /**
+     * 
+     * @param name
+     * @param window
+     * @param model 
+     */
     public AbstractView(String name, Window window, Model model) {
         mName = name;
         mWindow = window;
