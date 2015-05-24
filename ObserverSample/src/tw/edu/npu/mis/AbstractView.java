@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Samael Wang <freesamael@gmail.com>
+ * Copyright (c) 2015, jie
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,18 +26,39 @@
 package tw.edu.npu.mis;
 
 /**
- * {@link View} generates outputs to the user.
  *
- * @author Samael Wang <freesamael@gmail.com>
+ * @author jie
  */
-public class View extends AbstractView implements Observer{
+public abstract class AbstractView implements Observer
+{
+    
+    protected final String mName;
+    protected final Window mWindow;
+    protected final Model mModel;
 
-    public View(String name, Window window, Model model) {
-        super(name, window, model);
+    public AbstractView(String name, Window window, Model model) {
+        mName = name;
+        mWindow = window;
+        mModel = model;
+        mModel.Attach(this);
     }
+
+    /**
+     * Invalidate the view, which indicates it needs to be redrawn later.
+     */
+    public void invalidate() {
+        mWindow.schduleRedraw(this);
+    }
+
+    /**
+     * Show the content of the model on the console.
+     */
+    public abstract void onDraw();
 
     @Override
-    public void onDraw() {
-        System.out.println("View (" + mName + "): " + mModel.getData());
+    public void Update() {
+        invalidate();
     }
+
+    
 }
