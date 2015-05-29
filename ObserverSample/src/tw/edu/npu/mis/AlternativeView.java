@@ -30,25 +30,15 @@ package tw.edu.npu.mis;
  *
  * @author Samael Wang <freesamael@gmail.com>
  */
-//public class AlternativeView implements Observer{
 public class AlternativeView extends AbstractView implements Observer{
-
+    /**
+     * 呼叫AbstractView的建構子
+     */
     public AlternativeView(String name, Window window, Model model) {
         super(name, window, model);
     }
-
     @Override
     public void onDraw() {
         System.out.println("AlternativeView (" + mName + "): " + new StringBuffer().append(mModel.getData()).reverse());
-        
-        /*
-        String s;
-        s = mModel.getData();
-        StringBuffer sb = new StringBuffer();
-        sb.append(s);
-        sb.reverse();
-        System.out.println(sb);
-        */
-        
     }
 }

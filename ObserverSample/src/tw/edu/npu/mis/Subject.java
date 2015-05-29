@@ -33,13 +33,23 @@ import java.util.ArrayList;
  */
 public class Subject {
     private ArrayList<Observer> ObsList = new ArrayList<Observer>();
+    /**
+     * 新增物件至ArrayList中
+     * @param o 要新增的物件
+     */
     public void Attach(Observer o) {
         ObsList.add(o);
     }
+    /**
+     * 移出ArrayList中的物件
+     * @param o 要移除的物件
+     */
     public void Detach(Observer o) {
         ObsList.remove(o);
     }
-    
+    /**
+     * 通知ArrayList中的物件更新。
+     */
     public void Notify() {
         for (Observer i : ObsList) {
             i.Update();

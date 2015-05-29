@@ -31,11 +31,13 @@ package tw.edu.npu.mis;
  * @author Samael Wang <freesamael@gmail.com>
  */
 public class View extends AbstractView implements Observer{
-
+    /**
+     * 呼叫AbstractView的建構子
+     */
     public View(String name, Window window, Model model) {
         super(name, window, model);
     }
-
+    
     @Override
     public void onDraw() {
         System.out.println("View (" + mName + "): " + mModel.getData());

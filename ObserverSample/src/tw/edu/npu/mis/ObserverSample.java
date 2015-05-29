@@ -36,7 +36,7 @@ import java.util.List;
 public class ObserverSample {
     
     /**
-     * 就是一個main
+     * 新增Window與Model物件，並將View加入list當中，最後執行Window的startEventLoop。
      * @param args 
      */
     public static void main(String[] args) {

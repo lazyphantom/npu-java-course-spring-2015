@@ -32,6 +32,7 @@ package tw.edu.npu.mis;
  */
 public class Model extends Subject{
 
+    
     private String mData;
     private String temp;
     
@@ -46,7 +47,7 @@ public class Model extends Subject{
     }
 
     /**
-     * Update model.
+     * 更新Model，如果資料與上一筆相同則不更新。
      *
      * @param data A {@link String} data.
      */

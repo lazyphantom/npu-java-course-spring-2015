@@ -30,7 +30,8 @@ package tw.edu.npu.mis;
  * @author jie
  */
 public interface Observer {
-   
+    /**
+     * 通知更新。
+     */
     void Update();
-    
 }

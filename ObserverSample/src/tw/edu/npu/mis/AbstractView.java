@@ -26,7 +26,9 @@
 package tw.edu.npu.mis;
 
 /**
- *
+ * 將View的各項設置完成
+ * 而把onDraw的部分設置為abstract
+ * 使View可以藉由繼承而達到多種呈現效果
  * @author jie
  */
 public abstract class AbstractView implements Observer
@@ -38,9 +40,9 @@ public abstract class AbstractView implements Observer
     
     /**
      * 
-     * @param name
-     * @param window
-     * @param model 
+     * @param name 設置這個View的名稱。
+     * @param window 設定這個View在哪個Window裡。
+     * @param model 設定View所讀取的Model。
      */
     public AbstractView(String name, Window window, Model model) {
         mName = name;
@@ -50,17 +52,20 @@ public abstract class AbstractView implements Observer
     }
 
     /**
-     * Invalidate the view, which indicates it needs to be redrawn later.
+     * 將View加入到重繪佇列中
      */
     public void invalidate() {
         mWindow.schduleRedraw(this);
     }
 
     /**
-     * Show the content of the model on the console.
+     * 印出資料，為了可以使onDraw有多種呈現，所以這邊暫時不實作，將由繼承這個他的物件實作。
      */
     public abstract void onDraw();
-
+    
+    /**
+     * 複寫Observer中的Update()，去實作他。
+     */
     @Override
     public void Update() {
         invalidate();

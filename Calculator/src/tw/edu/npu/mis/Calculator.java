@@ -16,12 +16,12 @@ public class Calculator {
     public enum Operator {
         CLEAR,       // C
         CLEAR_ENTRY, // CE
-        BACKSPACE,   // ⌫
+        BACKSPACE,   // ?
         EQUAL,       // =
         PLUS,        // +
         MINUS,       // -
         TIMES,       // ×
-        OVER,        // ⁄
+        OVER,        // ?
         PLUS_MINUS,  // ±
         RECIPROCAL,  // 1/x
         PERCENT,     // %
@@ -55,6 +55,7 @@ public class Calculator {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new NewJFrame().setVisible(true);
     }
 
 }
