@@ -44,12 +44,12 @@ public class ObserverSample {
         Window window = new Window();
         Model model = new Model();
         Controller controller = new Controller(model);
-        List<AbstractView> views = new ArrayList<>();
-        views.add(new View("View 1", window, model));
-        views.add(new View("View 2", window, model));
-        views.add(new AlternativeView("View 3", window, model));
+        new View("View 1", window, model);
+        new View("View 2", window, model);
+        new View("View 3", window, model);
+        new AlternativeView("View 4", window, model);
 
         // Start the event loop.
-        window.startEventLoop(controller, views);
+        window.startEventLoop(controller);
     }
 }

@@ -39,6 +39,12 @@ public class AlternativeView extends AbstractView implements Observer{
     }
     @Override
     public void onDraw() {
+        show();
+    }
+    /**
+     * 反向印出
+     */
+    private void show() {
         System.out.println("AlternativeView (" + mName + "): " + new StringBuffer().append(mModel.getData()).reverse());
     }
 }
