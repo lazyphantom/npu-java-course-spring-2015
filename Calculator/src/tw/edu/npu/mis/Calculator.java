@@ -47,7 +47,6 @@ public class Calculator extends Subject {
     }
 
     public void Convert(int index) {
-        operationStatus = index;
         switch (index) {
             case 0:
                 performOperation(Operator.MEM_CLEAR);
@@ -83,6 +82,7 @@ public class Calculator extends Subject {
                 performOperation(Operator.BACKSPACE);
                 break;
             case 11:
+                operationStatus = index;
                 performOperation(Operator.OVER);
                 break;
             case 12:
@@ -95,6 +95,7 @@ public class Calculator extends Subject {
                 appendDigit(9);
                 break;
             case 15:
+                operationStatus = index;
                 performOperation(Operator.TIMES);
                 break;
             case 16:
@@ -107,6 +108,7 @@ public class Calculator extends Subject {
                 appendDigit(6);
                 break;
             case 19:
+                operationStatus = index;
                 performOperation(Operator.MINUS);
                 break;
             case 20:
@@ -119,6 +121,7 @@ public class Calculator extends Subject {
                 appendDigit(3);
                 break;
             case 23:
+                operationStatus = index;
                 performOperation(Operator.PLUS);
                 break;
             case 24:
@@ -176,21 +179,34 @@ public class Calculator extends Subject {
             case CLEAR_ENTRY:
                 break;
             case CLEAR:
+                temp = 0;
+                digit = 0;
                 break;
             case BACKSPACE:
                 break;
             case OVER:
+                temp = digit;
+                digit = 0;
                 break;
             case TIMES:
+                temp = digit;
+                digit = 0;
                 break;
             case MINUS:
+                temp = digit;
+                digit = equal();
+                digit = 0;
                 break;
             case PLUS:
                 temp = digit;
+                digit = equal();
+                digit = 0;
+                //digit = equal();
                 break;
             case PLUS_MINUS:
                 break;
             case EQUAL:
+                digit = equal();
                 break;
         }
     }
@@ -198,5 +214,29 @@ public class Calculator extends Subject {
     public String getDisplay() {
         // TODO code application logic here
         return String.valueOf(digit);
+    }
+    private double equal()
+    {
+        switch(operationStatus)
+        {
+            case 11:
+                digit = temp/digit;
+                break;
+            case 15:
+                digit = temp*digit;
+                break;
+            case 19:
+                digit = temp-digit;
+                break;
+            case 23:
+                digit = temp+digit;
+                break;
+        }
+        //temp += digit;
+        return digit;
+    }
+    private void calculation()
+    {
+        
     }
 }
