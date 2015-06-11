@@ -42,7 +42,6 @@ public class Calculator extends Subject {
         digit_temp = "";
         operationStatus = 0;
     }
-
     public void Convert(int index) {
         switch (index) {
             case 0:
@@ -135,18 +134,15 @@ public class Calculator extends Subject {
                 break;
         }
     }
-
     public void appendDigit(int digit) {
         this.digit += "" + digit;
     }
-
     public void appendDot() {
         if (digit.indexOf(".") == -1) {
             digit += ".";
         }
 
     }
-
     public void performOperation(Operator operator) {
         switch (operator) {
             case MEM_CLEAR:
@@ -160,10 +156,16 @@ public class Calculator extends Subject {
             case MEM_SET:
                 break;
             case SQRT:
+                digit = Math.sqrt(Double.valueOf(digit)) + "";
+                deleteLastDotZero();
                 break;
             case PERCENT:
+                digit = Double.valueOf(digit_temp)/100*Double.valueOf(digit)+"";
+                deleteLastDotZero();
                 break;
             case RECIPROCAL:
+                digit = 1 / Double.valueOf(digit) + "";
+                deleteLastDotZero();
                 break;
             case CLEAR_ENTRY:
                 digit = "";
@@ -183,30 +185,22 @@ public class Calculator extends Subject {
                 break;
             case OVER:
                 equal();
-                if (!digit.equals(digit_temp)) {
-                    digit_temp = digit;
-                }
+                digit_temp = digit;
                 digit = "";
                 break;
             case TIMES:
                 equal();
-                if (!digit.equals(digit_temp)) {
-                    digit_temp = digit;
-                }
+                digit_temp = digit;
                 digit = "";
                 break;
             case MINUS:
                 equal();
-                if (!digit.equals(digit_temp)) {
-                    digit_temp = digit;
-                }
+                digit_temp = digit;
                 digit = "";
                 break;
             case PLUS:
                 equal();
-                if (!digit.equals(digit_temp)) {
-                    digit_temp = digit;
-                }
+                digit_temp = digit;
                 digit = "";
                 break;
             case PLUS_MINUS:
@@ -224,11 +218,9 @@ public class Calculator extends Subject {
                 break;
         }
     }
-
     public String getDisplay() {
         return digit;
     }
-
     private void equal() {
         if (digit.equals("") || digit_temp.equals("")) {
             return;
@@ -246,6 +238,12 @@ public class Calculator extends Subject {
             case 23:
                 digit = (Double.valueOf(digit_temp) + Double.valueOf(digit)) + "";
                 break;
+        }
+        deleteLastDotZero();
+    }
+    private void deleteLastDotZero() {
+        if (digit.length() != 1 && digit.length() - digit.indexOf(".0") == 2) {
+            digit = digit.substring(0, digit.length() - 2);
         }
     }
 }
