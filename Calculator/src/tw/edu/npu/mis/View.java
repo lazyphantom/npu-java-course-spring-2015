@@ -9,10 +9,7 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
@@ -67,8 +64,7 @@ public class View extends JFrame implements Observer{
     
     @Override
     public void Update() {
-        BigDecimal bd = new BigDecimal(mCalculator.getDisplay());
-        this.mJTextField.setText(bd+"");
+        this.mJTextField.setText(mCalculator.getDisplay());
     }
 
 }

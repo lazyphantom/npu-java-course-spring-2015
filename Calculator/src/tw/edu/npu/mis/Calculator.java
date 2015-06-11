@@ -5,8 +5,6 @@
  */
 package tw.edu.npu.mis;
 
-import java.text.NumberFormat;
-
 /**
  * The model class of the calculator application.
  */
@@ -36,13 +34,12 @@ public class Calculator extends Subject {
         MEM_RECALL   // MR
     }
 
-    
-    private double digit, temp;
+    private String digit, digit_temp;
     private int operationStatus;
-    
+
     public Calculator() {
-        digit = 0;
-        temp = 0;
+        digit = "";
+        digit_temp = "";
         operationStatus = 0;
     }
 
@@ -140,26 +137,18 @@ public class Calculator extends Subject {
     }
 
     public void appendDigit(int digit) {
-        // TODO code application logic here
-        
-        this.digit = (this.digit * 10) + digit;
-        /*
-        if(this.digit>java.lang.Double.MAX_VALUE)
-        {
-            this.digit = java.lang.Double.MAX_VALUE;
-        }*/
+        this.digit += "" + digit;
     }
 
     public void appendDot() {
-        // TODO code application logic here
+        if (digit.indexOf(".") == -1) {
+            digit += ".";
+        }
 
     }
 
     public void performOperation(Operator operator) {
-        // TODO code application logic here
-        //this.equals(this)
-        switch(operator)
-        {
+        switch (operator) {
             case MEM_CLEAR:
                 break;
             case MEM_RECALL:
@@ -177,66 +166,86 @@ public class Calculator extends Subject {
             case RECIPROCAL:
                 break;
             case CLEAR_ENTRY:
+                digit = "";
                 break;
             case CLEAR:
-                temp = 0;
-                digit = 0;
+                digit_temp = "";
+                digit = "";
                 break;
             case BACKSPACE:
+                if (digit.length() > 0) {
+                    if (digit.length() != 1 && digit.length() - digit.indexOf(".") == 2) {
+                        digit = digit.substring(0, digit.length() - 2);
+                    } else {
+                        digit = digit.substring(0, digit.length() - 1);
+                    }
+                }
                 break;
             case OVER:
-                temp = digit;
-                digit = 0;
+                equal();
+                if (!digit.equals(digit_temp)) {
+                    digit_temp = digit;
+                }
+                digit = "";
                 break;
             case TIMES:
-                temp = digit;
-                digit = 0;
+                equal();
+                if (!digit.equals(digit_temp)) {
+                    digit_temp = digit;
+                }
+                digit = "";
                 break;
             case MINUS:
-                temp = digit;
-                digit = equal();
-                digit = 0;
+                equal();
+                if (!digit.equals(digit_temp)) {
+                    digit_temp = digit;
+                }
+                digit = "";
                 break;
             case PLUS:
-                temp = digit;
-                digit = equal();
-                digit = 0;
-                //digit = equal();
+                equal();
+                if (!digit.equals(digit_temp)) {
+                    digit_temp = digit;
+                }
+                digit = "";
                 break;
             case PLUS_MINUS:
+                if (!(digit.equals("0") | digit.equals(""))) {
+                    if (digit.indexOf("-") == -1) {
+                        digit = "-" + digit;
+                    } else {
+                        digit = digit.substring(1, digit.length());
+                    }
+                }
                 break;
             case EQUAL:
-                digit = equal();
+                equal();
+                digit_temp = "";
                 break;
         }
     }
 
     public String getDisplay() {
-        // TODO code application logic here
-        return String.valueOf(digit);
-    }
-    private double equal()
-    {
-        switch(operationStatus)
-        {
-            case 11:
-                digit = temp/digit;
-                break;
-            case 15:
-                digit = temp*digit;
-                break;
-            case 19:
-                digit = temp-digit;
-                break;
-            case 23:
-                digit = temp+digit;
-                break;
-        }
-        //temp += digit;
         return digit;
     }
-    private void calculation()
-    {
-        
+
+    private void equal() {
+        if (digit.equals("") || digit_temp.equals("")) {
+            return;
+        }
+        switch (operationStatus) {
+            case 11:
+                digit = (Double.valueOf(digit_temp) / Double.valueOf(digit)) + "";
+                break;
+            case 15:
+                digit = (Double.valueOf(digit_temp) * Double.valueOf(digit)) + "";
+                break;
+            case 19:
+                digit = (Double.valueOf(digit_temp) - Double.valueOf(digit)) + "";
+                break;
+            case 23:
+                digit = (Double.valueOf(digit_temp) + Double.valueOf(digit)) + "";
+                break;
+        }
     }
 }
