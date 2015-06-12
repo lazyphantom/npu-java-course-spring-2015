@@ -25,6 +25,10 @@ public class View extends JFrame implements Observer{
     private int num;
     private String []sign =  {"MC", "MR", "M+", "M-", "MS", "√", "%", "1/x", "CE", "C", "←", "÷", "7", "8", "9", "×", "4", "5", "6", "-", "1", "2", "3", "+", "±", "0", ".", "="};
     
+    /**
+     * 建構子 做初始化使用
+     * @param c 傳入modle
+     */
     public View(Calculator c) {
         this.setTitle("Calcuator");
         initComponents();
@@ -32,6 +36,9 @@ public class View extends JFrame implements Observer{
         mCalculator = c;
         mCalculator.Attach(this);
     }
+    /**
+     * 建構視窗
+     */
     private void initComponents() {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);        //設定視窗預設關閉行為
         Container contentPane = this.getContentPane();                              //取得JFrame的容器
@@ -59,6 +66,10 @@ public class View extends JFrame implements Observer{
         }
         this.pack();
     }
+    /**
+     * 按下按鈕時執行此方法 做中介轉換用
+     * @param index 按鍵編號
+     */
     void onClick(int index) {
         mCalculator.Convert(index);
     }

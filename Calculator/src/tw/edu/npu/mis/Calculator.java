@@ -36,14 +36,19 @@ public class Calculator extends Subject {
 
     private String digit, digit_temp;
     private int operationStatus;
-
+    /**
+     * 建構子 用來做初始化
+     */
     public Calculator() {
         digit = "";
         digit_temp = "";
         operationStatus = 0;
 
     }
-
+    /**
+     * 把按鍵傳來的按鍵編號轉換為功能
+     * @param index 按鍵編號
+     */
     public void Convert(int index) {
         switch (index) {
             case 0:
@@ -137,7 +142,10 @@ public class Calculator extends Subject {
         }
         Notify();
     }
-
+    /**
+     * 新增數字
+     * @param digit 數字 
+     */
     public void appendDigit(int digit) {
         if (!this.digit.equals("0")) {
             this.digit += "" + digit;
@@ -145,14 +153,19 @@ public class Calculator extends Subject {
             this.digit = digit + "";
         }
     }
-
+    /**
+     * 新增小數點 若已有小數點則不動作
+     */
     public void appendDot() {
         if (digit.indexOf(".") == -1) {
             digit += ".";
         }
 
     }
-
+    /**
+     * 使用運算子
+     * @param operator 運算子 
+     */
     public void performOperation(Operator operator) {
         switch (operator) {
             case MEM_CLEAR:
@@ -229,11 +242,17 @@ public class Calculator extends Subject {
                 break;
         }
     }
-
+    /**
+     * 回傳數值以供顯示
+     * @return 數值
+     */
     public String getDisplay() {
         return digit;
     }
-
+    /**
+     * 等於 做運算用
+     * 加減乘除的運算都在這邊執行
+     */
     private void equal() {
         if (digit.equals("") || digit_temp.equals("")) {
             return;
@@ -255,6 +274,10 @@ public class Calculator extends Subject {
         deleteLastDotZero();
     }
 
+    /**
+     * 刪除最後面的.0
+     * 若數字最後有.0的話就把他刪除
+     */
     private void deleteLastDotZero() {
         if (digit.length() != 1 && digit.length() - digit.indexOf(".0") == 2) {
             digit = digit.substring(0, digit.length() - 2);
