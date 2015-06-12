@@ -30,6 +30,7 @@ public class View extends JFrame implements Observer{
         initComponents();
         num = 0;
         mCalculator = c;
+        mCalculator.Attach(this);
     }
     private void initComponents() {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);        //設定視窗預設關閉行為

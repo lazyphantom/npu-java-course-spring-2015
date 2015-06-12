@@ -41,6 +41,7 @@ public class Calculator extends Subject {
         digit = "";
         digit_temp = "";
         operationStatus = 0;
+        
     }
     public void Convert(int index) {
         switch (index) {
@@ -133,6 +134,7 @@ public class Calculator extends Subject {
                 performOperation(Operator.EQUAL);
                 break;
         }
+        Notify();
     }
     public void appendDigit(int digit) {
         this.digit += "" + digit;

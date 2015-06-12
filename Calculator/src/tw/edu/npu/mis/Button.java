@@ -23,7 +23,6 @@ public class Button extends JButton {
         addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mView.onClick(index);
-                mView.Update();
             }
        });
     }
