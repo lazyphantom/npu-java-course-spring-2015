@@ -41,8 +41,9 @@ public class Calculator extends Subject {
         digit = "";
         digit_temp = "";
         operationStatus = 0;
-        
+
     }
+
     public void Convert(int index) {
         switch (index) {
             case 0:
@@ -136,15 +137,22 @@ public class Calculator extends Subject {
         }
         Notify();
     }
+
     public void appendDigit(int digit) {
-        this.digit += "" + digit;
+        if (!this.digit.equals("0")) {
+            this.digit += "" + digit;
+        } else {
+            this.digit = digit + "";
+        }
     }
+
     public void appendDot() {
         if (digit.indexOf(".") == -1) {
             digit += ".";
         }
 
     }
+
     public void performOperation(Operator operator) {
         switch (operator) {
             case MEM_CLEAR:
@@ -162,7 +170,7 @@ public class Calculator extends Subject {
                 deleteLastDotZero();
                 break;
             case PERCENT:
-                digit = Double.valueOf(digit_temp)/100*Double.valueOf(digit)+"";
+                digit = Double.valueOf(digit_temp) / 100 * Double.valueOf(digit) + "";
                 deleteLastDotZero();
                 break;
             case RECIPROCAL:
@@ -212,6 +220,7 @@ public class Calculator extends Subject {
                     } else {
                         digit = digit.substring(1, digit.length());
                     }
+
                 }
                 break;
             case EQUAL:
@@ -220,9 +229,11 @@ public class Calculator extends Subject {
                 break;
         }
     }
+
     public String getDisplay() {
         return digit;
     }
+
     private void equal() {
         if (digit.equals("") || digit_temp.equals("")) {
             return;
@@ -243,6 +254,7 @@ public class Calculator extends Subject {
         }
         deleteLastDotZero();
     }
+
     private void deleteLastDotZero() {
         if (digit.length() != 1 && digit.length() - digit.indexOf(".0") == 2) {
             digit = digit.substring(0, digit.length() - 2);

@@ -45,7 +45,7 @@ public class View extends JFrame implements Observer{
         mJTextField = new JTextField();
         mJTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         mJTextField.setPreferredSize(new java.awt.Dimension(252, 21));
-        mJTextField.setText("0");
+        mJTextField.setText("");
         contentPane.add(mJTextField, gbc);
         for(int y=1; y<8; y++) {
             for(int x=0; x<4; x++) {
